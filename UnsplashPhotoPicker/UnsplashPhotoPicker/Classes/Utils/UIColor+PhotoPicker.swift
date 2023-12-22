@@ -10,7 +10,9 @@ import UIKit
 
 struct PhotoPickerColors {
     var background: UIColor {
+#if iOS
         if #available(iOS 13.0, *) { return .systemBackground }
+#endif
         return .white
     }
     var titleLabel: UIColor {

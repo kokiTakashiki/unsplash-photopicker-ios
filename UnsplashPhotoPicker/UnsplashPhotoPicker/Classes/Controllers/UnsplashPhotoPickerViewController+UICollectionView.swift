@@ -45,7 +45,11 @@ extension UnsplashPhotoPickerViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+#if iOS
         guard let photo = dataSource.item(at: indexPath.item), collectionView.hasActiveDrag == false else { return }
+#else
+        guard let photo = dataSource.item(at: indexPath.item) else { return }
+#endif
 
         if Configuration.shared.allowsMultipleSelection {
             updateTitle()

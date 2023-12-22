@@ -7,7 +7,7 @@ let package = Package(
     name: "UnsplashPhotoPicker",
     defaultLocalization: "en",
     platforms: [
-        .tvOS(.v12)
+        .tvOS(.v13)
     ],
     products: [
         .library(
