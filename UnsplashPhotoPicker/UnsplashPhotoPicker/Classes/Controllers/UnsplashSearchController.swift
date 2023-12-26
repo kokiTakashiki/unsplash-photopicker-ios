@@ -5,7 +5,7 @@
 //  Created by Bichon, Nicolas on 2018-12-10.
 //  Copyright © 2018 Unsplash. All rights reserved.
 //
-#if iOS
+#if os(iOS)
 import UIKit
 
 class UnsplashSearchController: UISearchController {

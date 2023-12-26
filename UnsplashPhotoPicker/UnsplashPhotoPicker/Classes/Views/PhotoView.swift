@@ -10,8 +10,6 @@ import UIKit
 
 class PhotoView: UIView {
 
-    static var nib: UINib { return UINib(nibName: "PhotoView", bundle: Bundle.local) }
-
     private var currentPhotoID: String?
     private var imageDownloader = ImageDownloader()
     private var screenScale: CGFloat { return UIScreen.main.scale }
@@ -93,7 +91,7 @@ class PhotoView: UIView {
     // MARK: - Utility
 
     class func view(with photo: UnsplashPhoto) -> PhotoView? {
-        guard let photoView = nib.instantiate(withOwner: nil, options: nil).first as? PhotoView else {
+        guard let photoView = Configuration.shared.photoViewNib?.instantiate(withOwner: nil, options: nil).first as? PhotoView else {
             return nil
         }
 

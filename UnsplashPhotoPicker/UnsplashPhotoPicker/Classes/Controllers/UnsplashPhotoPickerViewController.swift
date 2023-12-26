@@ -33,7 +33,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         )
     }()
 
-#if iOS
+#if os(iOS)
     private lazy var searchController: UISearchController = {
         let searchController = UnsplashSearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -119,11 +119,11 @@ class UnsplashPhotoPickerViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.photoPicker.background
-#if iOS
+#if os(iOS)
         setupNotifications()
 #endif
         setupNavigationBar()
-#if iOS
+#if os(iOS)
         setupSearchController()
 #endif
         setupCollectionView()
@@ -143,7 +143,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-#if iOS
+#if os(iOS)
         // Fix to avoid a retain issue
         searchController.dismiss(animated: true, completion: nil)
 #endif
@@ -158,7 +158,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     // MARK: - Setup
-#if iOS
+#if os(iOS)
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -175,7 +175,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         }
     }
 
-#if iOS
+#if os(iOS)
     private func setupSearchController() {
         let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
         if let query = trimmedQuery, query.isEmpty == false { return }
@@ -302,7 +302,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
             fetchNextItems()
         }
     }
-#if iOS
+#if os(iOS)
     // MARK: - Notifications
 
     @objc func keyboardWillShowNotification(_ notification: Notification) {
@@ -357,7 +357,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     }
 }
 
-#if iOS
+#if os(iOS)
 // MARK: - UIScrollViewDelegate
 extension UnsplashPhotoPickerViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

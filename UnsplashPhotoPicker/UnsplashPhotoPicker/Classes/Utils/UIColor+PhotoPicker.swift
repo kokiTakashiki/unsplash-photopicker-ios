@@ -10,8 +10,10 @@ import UIKit
 
 struct PhotoPickerColors {
     var background: UIColor {
-#if iOS
+#if os(iOS)
         if #available(iOS 13.0, *) { return .systemBackground }
+#elseif os(tvOS)
+        return .clear
 #endif
         return .white
     }

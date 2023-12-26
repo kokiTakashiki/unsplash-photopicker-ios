@@ -13,7 +13,7 @@ extension UnsplashPhoto {
         return NSItemProvider(object: UnsplashPhotoItemProvider(with: self))
     }
 
-#if iOS
+#if os(iOS)
     var dragItem: UIDragItem {
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = self

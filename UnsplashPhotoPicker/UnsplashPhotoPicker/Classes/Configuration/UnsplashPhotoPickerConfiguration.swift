@@ -6,7 +6,7 @@
 //  Copyright © 2018 Unsplash. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  Content Safety
@@ -25,6 +25,7 @@ public enum ContentFilterLevel: String {
 
 /// Encapsulates configuration information for the behavior of UnsplashPhotoPicker.
 public struct UnsplashPhotoPickerConfiguration {
+    public var photoViewNib: UINib?
 
     /// Your application’s access key.
     public var accessKey = ""
@@ -72,7 +73,8 @@ public struct UnsplashPhotoPickerConfiguration {
      - parameter memoryCapacity:          The memory capacity used by the cache.
      - parameter diskCapacity:            The disk capacity used by the cache.
      */
-    public init(accessKey: String,
+    public init(photoViewNib: UINib,
+                accessKey: String,
                 secretKey: String,
                 query: String? = nil,
                 allowsMultipleSelection: Bool = false,
@@ -80,6 +82,7 @@ public struct UnsplashPhotoPickerConfiguration {
                 diskCapacity: Int = defaultDiskCapacity,
                 contentFilterLevel: ContentFilterLevel = defaultContentFilterLevel
     ) {
+        self.photoViewNib = photoViewNib
         self.accessKey = accessKey
         self.secretKey = secretKey
         self.query = query
