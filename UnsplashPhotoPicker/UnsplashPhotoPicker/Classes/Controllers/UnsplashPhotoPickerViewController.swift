@@ -33,6 +33,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         )
     }()
 
+#if os(iOS)
     private lazy var searchController: UISearchController = {
         let searchController = UnsplashSearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -42,6 +43,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         searchController.searchBar.autocapitalizationType = .none
         return searchController
     }()
+#endif
 
     private lazy var layout = WaterfallLayout(with: self)
 
@@ -66,7 +68,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
             spinner.hidesWhenStopped = true
             return spinner
         } else {
-            let spinner = UIActivityIndicatorView(style: .gray)
+            let spinner = UIActivityIndicatorView(style: .large)
             spinner.translatesAutoresizingMaskIntoConstraints = false
             spinner.hidesWhenStopped = true
             return spinner
@@ -117,9 +119,13 @@ class UnsplashPhotoPickerViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.photoPicker.background
+#if os(iOS)
         setupNotifications()
+#endif
         setupNavigationBar()
+#if os(iOS)
         setupSearchController()
+#endif
         setupCollectionView()
         setupSpinner()
 
@@ -137,9 +143,10 @@ class UnsplashPhotoPickerViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+#if os(iOS)
         // Fix to avoid a retain issue
         searchController.dismiss(animated: true, completion: nil)
+#endif
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -151,11 +158,12 @@ class UnsplashPhotoPickerViewController: UIViewController {
     }
 
     // MARK: - Setup
-
+#if os(iOS)
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+#endif
 
     private func setupNavigationBar() {
         updateTitle()
@@ -167,6 +175,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         }
     }
 
+#if os(iOS)
     private func setupSearchController() {
         let trimmedQuery = Configuration.shared.query?.trimmingCharacters(in: .whitespacesAndNewlines)
         if let query = trimmedQuery, query.isEmpty == false { return }
@@ -176,6 +185,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
         definesPresentationContext = true
         extendedLayoutIncludesOpaqueBars = true
     }
+#endif
 
     private func setupCollectionView() {
         view.addSubview(collectionView)
@@ -229,13 +239,17 @@ class UnsplashPhotoPickerViewController: UIViewController {
     // MARK: - Actions
 
     @objc private func cancelBarButtonTapped(sender: AnyObject?) {
+#if iOS
         searchController.searchBar.resignFirstResponder()
+#endif
 
         delegate?.unsplashPhotoPickerViewControllerDidCancel(self)
     }
 
     @objc private func doneBarButtonTapped(sender: AnyObject?) {
+#if iOS
         searchController.searchBar.resignFirstResponder()
+#endif
 
         let selectedPhotos = collectionView.indexPathsForSelectedItems?.reduce([], { (photos, indexPath) -> [UnsplashPhoto] in
             var mutablePhotos = photos
@@ -288,7 +302,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
             fetchNextItems()
         }
     }
-
+#if os(iOS)
     // MARK: - Notifications
 
     @objc func keyboardWillShowNotification(_ notification: Notification) {
@@ -314,6 +328,7 @@ class UnsplashPhotoPickerViewController: UIViewController {
             self?.collectionView.scrollIndicatorInsets = .zero
         }
     }
+#endif
 }
 
 // MARK: - UISearchBarDelegate
@@ -342,6 +357,7 @@ extension UnsplashPhotoPickerViewController: UISearchBarDelegate {
     }
 }
 
+#if os(iOS)
 // MARK: - UIScrollViewDelegate
 extension UnsplashPhotoPickerViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -350,6 +366,7 @@ extension UnsplashPhotoPickerViewController: UIScrollViewDelegate {
         }
     }
 }
+#endif
 
 // MARK: - PagedDataSourceDelegate
 extension UnsplashPhotoPickerViewController: PagedDataSourceDelegate {

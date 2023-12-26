@@ -5,7 +5,7 @@
 //  Created by Bichon, Nicolas on 2018-12-10.
 //  Copyright © 2018 Unsplash. All rights reserved.
 //
-
+#if os(iOS)
 import UIKit
 
 class UnsplashSearchController: UISearchController {
@@ -22,3 +22,4 @@ class CustomSearchBar: UISearchBar {
         super.setShowsCancelButton(false, animated: false)
     }
 }
+#endif
