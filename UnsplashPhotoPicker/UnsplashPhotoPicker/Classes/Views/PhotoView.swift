@@ -7,6 +7,9 @@
 //
 
 import UIKit
+#if os(tvOS)
+import TVUIKit
+#endif
 
 class PhotoView: UIView {
 
@@ -18,7 +21,9 @@ class PhotoView: UIView {
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet var overlayViews: [UIView]!
-
+#if os(tvOS)
+    @IBOutlet private weak var tvPosterView: TVPosterView!
+#endif
     var showsUsername = true {
         didSet {
             userNameLabel.alpha = showsUsername ? 1 : 0
@@ -58,6 +63,12 @@ class PhotoView: UIView {
         imageView.backgroundColor = photo.color
         currentPhotoID = photo.identifier
         downloadImage(with: photo)
+#if os(tvOS)
+        tvPosterView.imageView.image = imageView.image
+        tvPosterView.title = userNameLabel.text
+        userNameLabel.isHidden = true
+        imageView.isHidden = true
+#endif
     }
 
     private func downloadImage(with photo: UnsplashPhoto) {
@@ -68,13 +79,13 @@ class PhotoView: UIView {
         let downloadPhotoID = photo.identifier
 
         imageDownloader.downloadPhoto(with: url, completion: { [weak self] (image, isCached) in
-            guard let strongSelf = self, strongSelf.currentPhotoID == downloadPhotoID else { return }
+            guard let self, self.currentPhotoID == downloadPhotoID else { return }
 
             if isCached {
-                strongSelf.imageView.image = image
+                self.imageView.image = image
             } else {
-                UIView.transition(with: strongSelf, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-                    strongSelf.imageView.image = image
+                UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+                    self.imageView.image = image
                 }, completion: nil)
             }
         })
