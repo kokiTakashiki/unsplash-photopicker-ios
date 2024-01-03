@@ -5,6 +5,7 @@
         <deployment identifier="tvOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="TVUIKit controls" minToolsVersion="10.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,6 +19,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
+                <tvPosterView contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" title="Label" translatesAutoresizingMaskIntoConstraints="NO" id="wWt-U5-cDS">
+                    <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                </tvPosterView>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Kv-0r-W2S" customClass="GradientView" customModule="UnsplashPhotoPicker">
                     <rect key="frame" x="0.0" y="540" width="1920" height="540"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -34,9 +38,11 @@
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="6Kv-0r-W2S" secondAttribute="trailing" id="5eK-oP-CKm"/>
+                <constraint firstAttribute="bottom" secondItem="wWt-U5-cDS" secondAttribute="bottom" id="9Sr-9v-hh3"/>
                 <constraint firstAttribute="trailing" secondItem="KxT-2S-csa" secondAttribute="trailing" id="9Uo-5A-Nil"/>
                 <constraint firstAttribute="bottom" secondItem="KxT-2S-csa" secondAttribute="bottom" id="AOo-3b-m51"/>
                 <constraint firstItem="6Kv-0r-W2S" firstAttribute="top" secondItem="Qdd-JF-Vs1" secondAttribute="centerY" id="Aeg-0b-W1D"/>
+                <constraint firstItem="wWt-U5-cDS" firstAttribute="leading" secondItem="Qdd-JF-Vs1" secondAttribute="leading" id="Gao-8s-p81"/>
                 <constraint firstItem="eEU-Be-zNb" firstAttribute="bottom" secondItem="4jb-5S-M9a" secondAttribute="bottom" constant="16" id="JgB-u7-28h">
                     <variation key="widthClass=compact" constant="8"/>
                 </constraint>
@@ -44,14 +50,17 @@
                 <constraint firstItem="eEU-Be-zNb" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4jb-5S-M9a" secondAttribute="trailing" constant="12" id="O3B-iJ-WGb"/>
                 <constraint firstAttribute="bottom" secondItem="6Kv-0r-W2S" secondAttribute="bottom" id="Xrb-sg-Eyy"/>
                 <constraint firstItem="6Kv-0r-W2S" firstAttribute="leading" secondItem="Qdd-JF-Vs1" secondAttribute="leading" id="eUF-Fv-GRH"/>
+                <constraint firstAttribute="trailing" secondItem="wWt-U5-cDS" secondAttribute="trailing" id="hjG-Q1-qBc"/>
                 <constraint firstItem="KxT-2S-csa" firstAttribute="leading" secondItem="Qdd-JF-Vs1" secondAttribute="leading" id="iJd-4q-ecn"/>
                 <constraint firstItem="4jb-5S-M9a" firstAttribute="leading" secondItem="eEU-Be-zNb" secondAttribute="leading" constant="16" id="o0l-af-dHx">
                     <variation key="widthClass=compact" constant="8"/>
                 </constraint>
+                <constraint firstItem="wWt-U5-cDS" firstAttribute="top" secondItem="Qdd-JF-Vs1" secondAttribute="top" id="vNR-3f-dP4"/>
             </constraints>
             <connections>
                 <outlet property="gradientView" destination="6Kv-0r-W2S" id="ZLq-Zs-Nbl"/>
                 <outlet property="imageView" destination="KxT-2S-csa" id="AjO-gG-2IN"/>
+                <outlet property="tvPosterView" destination="wWt-U5-cDS" id="Gtb-oy-nib"/>
                 <outlet property="userNameLabel" destination="4jb-5S-M9a" id="Stu-4R-WaX"/>
                 <outletCollection property="overlayViews" destination="6Kv-0r-W2S" collectionClass="NSMutableArray" id="J65-is-Pw3"/>
             </connections>
