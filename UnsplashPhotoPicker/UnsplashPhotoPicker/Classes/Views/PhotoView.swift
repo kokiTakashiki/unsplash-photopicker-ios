@@ -59,16 +59,17 @@ class PhotoView: UIView {
 
     func configure(with photo: UnsplashPhoto, showsUsername: Bool = true) {
         self.showsUsername = showsUsername
-        userNameLabel.text = photo.user.displayName
-        imageView.backgroundColor = photo.color
-        currentPhotoID = photo.identifier
-        downloadImage(with: photo)
 #if os(tvOS)
-        tvPosterView.imageView.image = imageView.image
-        tvPosterView.title = userNameLabel.text
+        tvPosterView.title = photo.user.displayName
+        tvPosterView.imageView.backgroundColor = photo.color
         userNameLabel.isHidden = true
         imageView.isHidden = true
+#else
+        userNameLabel.text = photo.user.displayName
+        imageView.backgroundColor = photo.color
 #endif
+        currentPhotoID = photo.identifier
+        downloadImage(with: photo)
     }
 
     private func downloadImage(with photo: UnsplashPhoto) {
@@ -80,7 +81,15 @@ class PhotoView: UIView {
 
         imageDownloader.downloadPhoto(with: url, completion: { [weak self] (image, isCached) in
             guard let self, self.currentPhotoID == downloadPhotoID else { return }
-
+#if os(tvOS)
+            if isCached {
+                self.tvPosterView.imageView.image = image
+            } else {
+                UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+                    self.tvPosterView.imageView.image = image
+                }, completion: nil)
+            }
+#else
             if isCached {
                 self.imageView.image = image
             } else {
@@ -88,6 +97,8 @@ class PhotoView: UIView {
                     self.imageView.image = image
                 }, completion: nil)
             }
+
+#endif
         })
     }
 
