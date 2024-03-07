@@ -33,7 +33,7 @@ public struct UnsplashPhoto: Codable {
     public let exif: UnsplashPhotoExif?
     public let user: UnsplashUser
     public let urls: [URLKind: URL]
-    public let links: [LinkKind: URL]
+    public let links: [LinkKind: URL]?
     public let likesCount: Int
     public let downloadsCount: Int?
     public let viewsCount: Int?
@@ -67,7 +67,7 @@ public struct UnsplashPhoto: Codable {
         exif = try? container.decode(UnsplashPhotoExif.self, forKey: .exif)
         user = try container.decode(UnsplashUser.self, forKey: .user)
         urls = try container.decode([URLKind: URL].self, forKey: .urls)
-        links = try container.decode([LinkKind: URL].self, forKey: .links)
+        links = try? container.decode([LinkKind: URL].self, forKey: .links)
         likesCount = try container.decode(Int.self, forKey: .likesCount)
         downloadsCount = try? container.decode(Int.self, forKey: .downloadsCount)
         viewsCount = try? container.decode(Int.self, forKey: .viewsCount)
@@ -82,7 +82,7 @@ public struct UnsplashPhoto: Codable {
         try? container.encode(exif, forKey: .exif)
         try container.encode(user, forKey: .user)
         try container.encode(urls.convert({ ($0.key.rawValue, $0.value.absoluteString) }), forKey: .urls)
-        try container.encode(links.convert({ ($0.key.rawValue, $0.value.absoluteString) }), forKey: .links)
+        try? container.encode(links?.convert({ ($0.key.rawValue, $0.value.absoluteString) }), forKey: .links)
         try container.encode(likesCount, forKey: .likesCount)
         try? container.encode(downloadsCount, forKey: .downloadsCount)
         try? container.encode(viewsCount, forKey: .viewsCount)

@@ -13,8 +13,8 @@
 		231D1295218FC2E9002C5750 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231D1294218FC2E9002C5750 /* Assets.xcassets */; };
 		231D1298218FC2E9002C5750 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D1296218FC2E9002C5750 /* LaunchScreen.storyboard */; };
 		231D12A0218FC338002C5750 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D129F218FC338002C5750 /* PhotoCollectionViewCell.swift */; };
-		231D12A7218FC387002C5750 /* UnsplashPhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */; };
-		231D12A8218FC387002C5750 /* UnsplashPhotoPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9A8CC2092B9A08A10036DCAA /* UnsplashPhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */; };
+		9A8CC20A2B9A08A10036DCAA /* UnsplashPhotoPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 231D12A6218FC37E002C5750 /* UnsplashPhotoPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,23 +25,16 @@
 			remoteGlobalIDString = 23B683BB216BF83200CAA546;
 			remoteInfo = UnsplashPhotoPicker;
 		};
-		231D12A9218FC387002C5750 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 231D12A1218FC37E002C5750 /* UnsplashPhotoPicker.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 23B683BA216BF83200CAA546;
-			remoteInfo = UnsplashPhotoPicker;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		231D12AB218FC387002C5750 /* Embed Frameworks */ = {
+		9A8CC20B2B9A08A10036DCAA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				231D12A8218FC387002C5750 /* UnsplashPhotoPicker.framework in Embed Frameworks */,
+				9A8CC20A2B9A08A10036DCAA /* UnsplashPhotoPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				231D12A7218FC387002C5750 /* UnsplashPhotoPicker.framework in Frameworks */,
+				9A8CC2092B9A08A10036DCAA /* UnsplashPhotoPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +72,7 @@
 				231D128C218FC2E6002C5750 /* Example */,
 				231D128B218FC2E6002C5750 /* Products */,
 				231D12A1218FC37E002C5750 /* UnsplashPhotoPicker.xcodeproj */,
+				9A8CC2082B9A08A10036DCAA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +107,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A8CC2082B9A08A10036DCAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -123,14 +124,15 @@
 				231D1286218FC2E6002C5750 /* Sources */,
 				231D1287218FC2E6002C5750 /* Frameworks */,
 				231D1288218FC2E6002C5750 /* Resources */,
-				231D12AB218FC387002C5750 /* Embed Frameworks */,
+				9A8CC20B2B9A08A10036DCAA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				231D12AA218FC387002C5750 /* PBXTargetDependency */,
 			);
 			name = Example;
+			packageProductDependencies = (
+			);
 			productName = Example;
 			productReference = 231D128A218FC2E6002C5750 /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -160,6 +162,8 @@
 				Base,
 			);
 			mainGroup = 231D1281218FC2E6002C5750;
+			packageReferences = (
+			);
 			productRefGroup = 231D128B218FC2E6002C5750 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -210,14 +214,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		231D12AA218FC387002C5750 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UnsplashPhotoPicker;
-			targetProxy = 231D12A9218FC387002C5750 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		231D1291218FC2E7002C5750 /* Main.storyboard */ = {
@@ -291,7 +287,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -347,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -360,14 +356,13 @@
 		231D129D218FC2E9002C5750 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -383,14 +378,13 @@
 		231D129E218FC2E9002C5750 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
